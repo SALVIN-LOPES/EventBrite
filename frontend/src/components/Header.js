@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import SearchBox from "./SearchBox";
 
 const Header = () => {
+  const userInfo = true;
+  // userInfo.isAdmin = true;
+
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
@@ -22,26 +25,35 @@ const Header = () => {
             <SearchBox />
 
             <Nav className="ml-auto">
-              <LinkContainer to="/cart">
+              <LinkContainer to="/allevents">
                 <Nav.Link>
-                  <i className="fas fa-shopping-cart"></i>Cart
+                  <i className="fas fa-shopping-cart"></i>Global
                 </Nav.Link>
               </LinkContainer>
 
-              <NavDropdown title={"#"} id="username">
-                <LinkContainer to="/profile">
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
+              <LinkContainer to="/myevents">
+                <Nav.Link>
+                  <i className="fas fa-user"></i>Local
+                </Nav.Link>
+              </LinkContainer>
+
+              {userInfo ? (
+                <NavDropdown title={"salvin lopes"} id="username">
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+
+                  <NavDropdown.Item onClick={""}>Logout</NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>
+                    <i className="fas fa-user"></i>Login
+                  </Nav.Link>
                 </LinkContainer>
+              )}
 
-                <NavDropdown.Item onClick={"#"}>Logout</NavDropdown.Item>
-              </NavDropdown>
-              <LinkContainer to="/login">
-                <Nav.Link>
-                  <i className="fas fa-user"></i>Login
-                </Nav.Link>
-              </LinkContainer>
-
-              <NavDropdown title="Admin" id="adminmenu">
+              {/* <NavDropdown title="Admin" id="adminmenu">
                 <LinkContainer to={`/admin/userlist/`}>
                   <NavDropdown.Item>Users</NavDropdown.Item>
                 </LinkContainer>
@@ -53,7 +65,7 @@ const Header = () => {
                 <LinkContainer to={`/admin/orderlist/`}>
                   <NavDropdown.Item>Orders</NavDropdown.Item>
                 </LinkContainer>
-              </NavDropdown>
+              </NavDropdown> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
