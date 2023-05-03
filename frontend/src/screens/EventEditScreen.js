@@ -7,11 +7,9 @@ import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { createEvent, updateEvent } from "../actions/eventActions";
+import { UPDATE_EVENT_RESET } from "../constants/eventConstants";
 
 const EventEditScreen = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const { id } = useParams();
 
   const [name, setName] = useState("");
@@ -26,20 +24,46 @@ const EventEditScreen = () => {
     loading: eventCreateLoading,
     success: eventCreateSuccess,
     error: eventCreateError,
-    event,
+    event: eventCreated,
   } = eventCreate;
 
+  const eventUpdate = useSelector((state) => state.eventUpdate);
+  const {
+    loading: eventUpdateLoading,
+    success: eventUpdateSuccess,
+    error: eventUpdateError,
+    event: eventUpdated,
+  } = eventUpdate;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (eventCreateSuccess && event) {
-      setName(event.event_name);
-      setDescription(event.data);
-      setImage(event.image);
-      setLocation(event.location);
+    if (eventUpdateSuccess) {
+      dispatch({ type: UPDATE_EVENT_RESET });
+      // send the user to home page to view the event
+      console.log("event updated");
+      navigate(`/`);
+    } else {
+      if (eventCreateSuccess) {
+        setName(eventCreated.event_name);
+        setDescription(eventCreated.data);
+        setImage(eventCreated.image);
+        setLocation(eventCreated.location);
+      }
     }
-  }, [event, eventCreateSuccess]);
+  }, [
+    dispatch,
+    navigate,
+    eventCreated,
+    eventCreateSuccess,
+    eventUpdateSuccess,
+  ]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    console.log("image front = ", image);
     dispatch(
       updateEvent({
         _id: id,
@@ -49,7 +73,7 @@ const EventEditScreen = () => {
         location: location,
       })
     );
-    console.log("event created successfully!!");
+    console.log("event updated successfully!!");
   };
 
   const uploadFileHandler = async (e) => {
@@ -74,6 +98,7 @@ const EventEditScreen = () => {
         formData,
         config
       );
+      console.log("image data = ", data);
       setImage(data);
       setUploading(false);
     } catch (error) {
@@ -122,8 +147,8 @@ const EventEditScreen = () => {
               label="Choose File"
               type="file"
               custom
-              onChange={uploadFileHandler}
-            />
+              onChange={uploadFileHandler}></Form.Control>
+            {uploading && <Loader />}
           </Form.Group>
 
           <Form.Group controlId="location">

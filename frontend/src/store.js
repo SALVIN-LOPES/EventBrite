@@ -9,6 +9,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { userDeleteReducer, userLoginReducer } from "./reducers/userReducers";
 import {
   createEventReducer,
+  getAllEventsReducer,
   updateEventReducer,
 } from "./reducers/eventReducers";
 
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   // events reducers
   eventCreate: createEventReducer,
   eventUpdate: updateEventReducer,
+  allevents: getAllEventsReducer,
 });
 
 //get localstorage items and add to cart if not loggedIn

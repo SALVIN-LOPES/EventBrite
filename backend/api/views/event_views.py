@@ -9,9 +9,20 @@ from api.serializers import EventSerializer
 # retrieve all the events
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def getEvents(request):
+def getAllEvents(request):
 
     events = Event.objects.all()
+    serializer = EventSerializer(events, many=True)
+
+    return Response(serializer.data)
+
+# retrieve all the events
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getUserEvents(request):
+    user = request.user
+
+    events = Event.objects.filter(user=user)
     serializer = EventSerializer(events, many=True)
 
     return Response(serializer.data)
@@ -46,10 +57,8 @@ def uploadImage(request):
     event = Event.objects.filter(_id=event_id).first()
 
     event.image = request.FILES.get('image')
-    print("event id = ",event_id)
-    print("event image = ",event.image)
     event.save()
-    return Response("Image uploaded successfully!!")
+    return Response("Image uploaded successfully")
 
 
 # update an existing event

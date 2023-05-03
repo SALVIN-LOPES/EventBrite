@@ -28,13 +28,17 @@ const Header = () => {
   useEffect(() => {
     // dispatch({ type: CREATE_EVENT_RESET });
 
+    if (!userInfo) {
+      navigate("/login");
+    }
+
     if (eventCreateSuccess) {
       // redirect to the edit screen of the event
       navigate(`/event/${event._id}/create`);
     }
-  }, [event, eventCreateSuccess, navigate]);
+  }, [event, eventCreateSuccess, navigate, userInfo]);
 
-  const createProductHandler = () => {
+  const createEventHandler = () => {
     dispatch(createEvent());
     console.log("Event created successfully!!");
   };
@@ -89,22 +93,8 @@ const Header = () => {
                 </LinkContainer>
               )}
 
-              {/* <NavDropdown title="Admin" id="adminmenu">
-                <LinkContainer to={`/admin/userlist/`}>
-                  <NavDropdown.Item>Users</NavDropdown.Item>
-                </LinkContainer>
-
-                <LinkContainer to={`/admin/productlist/`}>
-                  <NavDropdown.Item>Products</NavDropdown.Item>
-                </LinkContainer>
-
-                <LinkContainer to={`/admin/orderlist/`}>
-                  <NavDropdown.Item>Orders</NavDropdown.Item>
-                </LinkContainer>
-              </NavDropdown> */}
-
               <Col className="text-right">
-                <Button className="my-3" onClick={createProductHandler} S>
+                <Button className="my-3" onClick={createEventHandler} S>
                   <i className="fas fa-plus"></i> Create Event
                 </Button>
               </Col>
