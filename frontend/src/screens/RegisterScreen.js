@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from "react-redux";
-// import { register } from "../actions/userActions";
+import { register } from "../actions/userActions";
 
 const RegisterScreen = () => {
   const [name, setName] = useState("");
@@ -20,10 +20,14 @@ const RegisterScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  //   const userRegister = useSelector((state) => state.userRegister);
-  //   const { error, loading, userInfo } = userRegister;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error, loading, userInfo } = userLogin;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [userInfo]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -32,7 +36,7 @@ const RegisterScreen = () => {
       setMessage("Passwords do not match");
     } else {
       console.log("passwords match");
-      //   dispatch(register(name, email, password));
+      dispatch(register(name, email, password));
     }
   };
 

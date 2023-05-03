@@ -5,7 +5,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import FormContainer from "../components/FormContainer";
 import { useDispatch, useSelector } from "react-redux";
-// import { login } from "../actions/userActions";
+import { login } from "../actions/userActions";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -16,15 +16,19 @@ const LoginScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // const userLogin = useSelector((state) => state.userLogin);
-  // const { error, loading, userInfo } = userLogin;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error, loading, userInfo } = userLogin;
   // console.log("userInfo = ", userInfo);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [navigate, userInfo, redirect]);
 
   const submitHandler = (e) => {
-    //e.preventDefault();
-    // dispatch(login(email, password));
+    e.preventDefault();
+    dispatch(login(email, password));
     console.log("login form submitted successfully!!");
   };
   //  20022001@Sc

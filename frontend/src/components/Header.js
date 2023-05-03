@@ -1,15 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
+import { Table, Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, NavItem, NavDropdown } from "react-bootstrap";
-// import { logout } from "../actions/userActions";
+import { logout } from "../actions/userActions";
 import { useNavigate } from "react-router-dom";
 import SearchBox from "./SearchBox";
+import { createEvent } from "../actions/eventActions";
+import { CREATE_EVENT_RESET } from "../constants/eventConstants";
 
 const Header = () => {
-  const userInfo = true;
-  // userInfo.isAdmin = true;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const eventCreate = useSelector((state) => state.eventCreate);
+  const {
+    loading: eventCreateLoading,
+    success: eventCreateSuccess,
+    error: eventCreateError,
+    event,
+  } = eventCreate;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // dispatch({ type: CREATE_EVENT_RESET });
+
+    if (eventCreateSuccess) {
+      // redirect to the edit screen of the event
+      navigate(`/event/${event._id}/create`);
+    }
+  }, [event, eventCreateSuccess, navigate]);
+
+  const createProductHandler = () => {
+    dispatch(createEvent());
+    console.log("Event created successfully!!");
+  };
+
+  const deleteUserHandler = () => {
+    dispatch(logout());
+    navigate("/login");
+    console.log("user logout successfully!!");
+  };
 
   return (
     <header>
@@ -38,12 +72,14 @@ const Header = () => {
               </LinkContainer>
 
               {userInfo ? (
-                <NavDropdown title={"salvin lopes"} id="username">
+                <NavDropdown title={userInfo.username} id="username">
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
 
-                  <NavDropdown.Item onClick={""}>Logout</NavDropdown.Item>
+                  <NavDropdown.Item onClick={deleteUserHandler}>
+                    Logout
+                  </NavDropdown.Item>
                 </NavDropdown>
               ) : (
                 <LinkContainer to="/login">
@@ -66,6 +102,12 @@ const Header = () => {
                   <NavDropdown.Item>Orders</NavDropdown.Item>
                 </LinkContainer>
               </NavDropdown> */}
+
+              <Col className="text-right">
+                <Button className="my-3" onClick={createProductHandler} S>
+                  <i className="fas fa-plus"></i> Create Event
+                </Button>
+              </Col>
             </Nav>
           </Navbar.Collapse>
         </Container>

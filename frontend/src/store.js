@@ -6,17 +6,32 @@ import {
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 // import userReducer
-import { userLoginReducer } from "./reducers/userReducers";
+import { userDeleteReducer, userLoginReducer } from "./reducers/userReducers";
+import {
+  createEventReducer,
+  updateEventReducer,
+} from "./reducers/eventReducers";
 
 const reducer = combineReducers({
+  // user reducers
   userLogin: userLoginReducer,
+  // userDelete: userDeleteReducer,
+
+  // events reducers
+  eventCreate: createEventReducer,
+  eventUpdate: updateEventReducer,
 });
 
 //get localstorage items and add to cart if not loggedIn
 
 //get localstorage useInfo and add to userLogin if loggedIn
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
 
-const initialState = {};
+const initialState = {
+  userLogin: { userInfo: userInfoFromStorage },
+};
 
 const middleware = [thunk];
 

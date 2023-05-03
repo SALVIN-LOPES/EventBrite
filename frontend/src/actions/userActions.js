@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useId } from "react";
-import { ORDER_LIST_MY_RESET } from "../constants/orderConstants";
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -31,6 +30,7 @@ import {
   USER_UPDATE_RESET,
 } from "../constants/userConstants";
 
+// 20022001@Sc
 export const login = (email, password) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -48,6 +48,7 @@ export const login = (email, password) => async (dispatch, getState) => {
       { username: email, password: password },
       config
     );
+    console.log("data = ", data);
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -321,20 +322,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
-  localStorage.removeItem("shippingAddress");
   dispatch({
     type: USER_LOGOUT,
-  });
-
-  dispatch({
-    type: USER_DETAILS_RESET,
-  });
-
-  dispatch({
-    type: ORDER_LIST_MY_RESET,
-  });
-
-  dispatch({
-    type: USER_LIST_RESET,
   });
 };

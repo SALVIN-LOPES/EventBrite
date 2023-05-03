@@ -7,6 +7,7 @@ import HomeScreen from "./screens/HomeScreen";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
+import EventEditScreen from "./screens/EventEditScreen";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route exact path="/" element={<HomeScreen />} />
             <Route exact path="/register" element={<RegisterScreen />} />
             <Route exact path="/login" element={<LoginScreen />} />
+            <Route exact path="/event/:id/create" element={<EventEditScreen />} />
           </Routes>
         </Container>
       </main>
