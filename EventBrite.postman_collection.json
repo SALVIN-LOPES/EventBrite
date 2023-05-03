@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "bd5a205a-34b4-42a0-89b0-907e65d28464",
+		"name": "EventBrite",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19671951"
+	},
+	"item": [
+		{
+			"name": "EVENTS",
+			"item": [
+				{
+					"name": "getAllEvents",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "event_name",
+									"value": "Toronto is the best place to visit!!",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "data",
+									"value": "t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/salvin lopes/Downloads/canada-toronto.jpg",
+									"disabled": true
+								},
+								{
+									"key": "is_liked",
+									"value": "True",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/events/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateEvent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NjM4MzU3LCJpYXQiOjE2ODMwNDYzNTcsImp0aSI6IjgzNzZmMDE1ZGVmNDQyZjRhMzEwYjRiZTY2ZjhmZWRhIiwidXNlcl9pZCI6MX0.zVYQOa4Zdd9BZRLCEfFUaUqC8c5aBmRD5oUeuVlSd8c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{URL}}/api/events/create/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEvent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "event_name",
+									"value": "sentosa",
+									"type": "text"
+								},
+								{
+									"key": "data",
+									"value": "lorem ipsum",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/salvin lopes/Downloads/london.jpg"
+								},
+								{
+									"key": "location",
+									"value": "singapore",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/events/update/9/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"update",
+								"9",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEvent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/events/delete/9/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"delete",
+								"9",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserEvents",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USERS",
+			"item": [
+				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTE1Nzk3LCJpYXQiOjE2ODI5MjM3OTcsImp0aSI6IjNmMzJlMzc2M2FmMjQ3MTM4YzRjZTQxMmY3NWE1ODNiIiwidXNlcl9pZCI6MX0.sLdmdbd8X27Rl3klhwVO6b-dBkTlWIVMuluaQS7Tq8Y",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTE1NDg0LCJpYXQiOjE2ODI5MjM0ODQsImp0aSI6IjZiNzYxZjA2ZjBjZjQxOTE5ZTRiOTJlOWQ5Y2IzNzM4IiwidXNlcl9pZCI6MX0.5-8JLZXkXFONDbel0YKHOBfduJmjVKgwxzuHumun3o0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/5/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"5",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "salvin lopes",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "salvinlopes1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "20022001@Sc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/register/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LoginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/login/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTE1OTc0LCJpYXQiOjE2ODI5MjM5NzQsImp0aSI6IjRiMGEyMGFkYWE2MzQ5OGM4ZTFlM2JkYTZiMTBhYmJhIiwidXNlcl9pZCI6MX0.jD1ytUtbh_ICOROdQS9rzM8xgj3X59NjHdSETolbEM0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/delete/4/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"delete",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTE4MDAxLCJpYXQiOjE2ODI5MjYwMDEsImp0aSI6ImNjZWU4YjdlNmE1YjQyNDM4N2Q0YTUwYjI0MDdhMGI4IiwidXNlcl9pZCI6MX0.DauC_DLdnKO1QWhRykHJuK095CKawFhYb4hufFK7l3Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "user3",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user3@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "isAdmin",
+									"value": "True",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/update/3/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"update",
+								"3",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUserProfile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTE4NDk1LCJpYXQiOjE2ODI5MjY0OTUsImp0aSI6IjU0OWEwMDE4NDRhYTRkM2ViNmM1MjRkMDRlYWRmOTNjIiwidXNlcl9pZCI6NX0.p_uI3FqibKYroq6hNfkXD-Cg5LQqH-VdRntCtwll_U0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "user5",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user5@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "20022001@Sc",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/profile/update/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"profile",
+								"update",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserProfile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1NTE4NDk1LCJpYXQiOjE2ODI5MjY0OTUsImp0aSI6IjU0OWEwMDE4NDRhYTRkM2ViNmM1MjRkMDRlYWRmOTNjIiwidXNlcl9pZCI6NX0.p_uI3FqibKYroq6hNfkXD-Cg5LQqH-VdRntCtwll_U0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/profile/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
